@@ -3,9 +3,12 @@
     "eslint": "^4.1.1"
   },
   "name": "eslint-plugin-tanda",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A small collection of custom ESLint plugins",
   "main": "index.js",
   "author": "David Buchan-Swanson <david.buchanswanson+npm@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/deecewan/eslint-plugin-tanda.git"
+  }
 }

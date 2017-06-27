@@ -38,6 +38,13 @@ ruleTester.run("enforce-i18n-keys", rule, {
         code: "<Component name=\"my text\" />",
         options: [{ paths: ["\\w+Exempt\\.jsx"] }],
         filename: "someExempt.jsx"
+    }, {
+        code: "<Component {...rest} />"
+    }, {
+        code: `
+        const x = t('some.translation.key');
+        <Component name={x} />
+        `
     }],
 
     invalid: [

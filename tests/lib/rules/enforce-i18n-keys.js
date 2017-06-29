@@ -26,31 +26,40 @@ var parserOptions = {
 
 var ruleTester = new RuleTester({ parserOptions });
 ruleTester.run("enforce-i18n-keys", rule, {
-    valid: [{
-        code: "<AllowedComponent name=\"my text\" />",
-        options: [{ components: ["AllowedComponent"] }]
-    }, {
-        code: "<Component name=\"my text\" />",
-        options: [{ paths: ["exempt.jsx"] }],
-        filename: "exempt.jsx"
-    }, {
-        code: "<Component name=\"my text\" />",
-        options: [{ paths: ["\\w+Exempt\\.jsx"] }],
-        filename: "someExempt.jsx"
-    }, {
-        code: "<Component {...rest} />"
-    }, {
-        code: `
-        const x = t('some.translation.key');
-        <Component name={x} />
-        `
-    }, {
-        code: "<Component className=\"something\" />"
-    }, {
-        code: "<Component className={someVariable} />"
-    }, {
-        code: "<div itemName=\"something\" />"
-    }],
+    valid: [
+        {
+            code: "<AllowedComponent name=\"my text\" />",
+            options: [{ components: ["AllowedComponent"] }]
+        },
+        {
+            code: "<Component name=\"my text\" />",
+            options: [{ paths: ["exempt.jsx"] }],
+            filename: "exempt.jsx"
+        },
+        {
+            code: "<Component name=\"my text\" />",
+            options: [{ paths: ["\\w+Exempt\\.jsx"] }],
+            filename: "someExempt.jsx"
+        },
+        {
+            code: "<Component {...rest} />"
+        },
+        {
+            code: `
+            const x = t('some.translation.key');
+            <Component name={x} />
+            `
+        },
+        {
+            code: "<Component className=\"something\" />"
+        },
+        {
+            code: "<Component className={someVariable} />"
+        },
+        {
+            code: "<div itemName=\"something\" />"
+        }
+    ],
 
     invalid: [
         {
@@ -86,6 +95,17 @@ ruleTester.run("enforce-i18n-keys", rule, {
             `,
             errors: [{
                 message: "Translated text required for `text` prop in `Component`",
+            }]
+        },
+        {
+            code: `
+            <window.Components.SubLevel.Another.SomeComponent label="text">
+                Some Content
+            </window.Components.SubLevel.Another.SomeComponent>
+            `,
+            errors: [{
+                message: "Translated text required for `label`" +
+                " prop in `window.Components.SubLevel.Another.SomeComponent`",
             }]
         }
     ]

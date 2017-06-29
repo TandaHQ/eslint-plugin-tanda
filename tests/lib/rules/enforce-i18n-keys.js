@@ -26,7 +26,6 @@ var parserOptions = {
 
 var ruleTester = new RuleTester({ parserOptions });
 ruleTester.run("enforce-i18n-keys", rule, {
-
     valid: [{
         code: "<AllowedComponent name=\"my text\" />",
         options: [{ components: ["AllowedComponent"] }]
@@ -45,31 +44,37 @@ ruleTester.run("enforce-i18n-keys", rule, {
         const x = t('some.translation.key');
         <Component name={x} />
         `
+    }, {
+        code: "<Component className=\"something\" />"
+    }, {
+        code: "<Component className={someVariable} />"
+    }, {
+        code: "<div itemName=\"something\" />"
     }],
 
     invalid: [
         {
             code: "<Component name=\"my text\" something=\"allowed\" />",
             errors: [{
-                message: "You must use translated text",
+                message: "Translated text required for `name` prop in `Component`",
             }]
         },
         {
             code: "<Component someLabel=\"my text\" anotherName=\"allowed\" demoText=\"something\" />",
             errors: [{
-                message: "You must use translated text",
+                message: "Translated text required for `someLabel` prop in `Component`",
             }, {
-                message: "You must use translated text",
+                message: "Translated text required for `anotherName` prop in `Component`",
             }, {
-                message: "You must use translated text",
+                message: "Translated text required for `demoText` prop in `Component`",
             }]
         },
         {
             code: "const x = 'some value'; <Component name={x} label=\"my text\" />",
             errors: [{
-                message: "You must use translated text",
+                message: "Translated text required for `name` prop in `Component`",
             }, {
-                message: "You must use translated text",
+                message: "Translated text required for `label` prop in `Component`",
             }]
         },
         {
@@ -80,7 +85,7 @@ ruleTester.run("enforce-i18n-keys", rule, {
             }
             `,
             errors: [{
-                message: "You must use translated text",
+                message: "Translated text required for `text` prop in `Component`",
             }]
         }
     ]

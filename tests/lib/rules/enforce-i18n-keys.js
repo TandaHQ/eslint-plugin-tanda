@@ -58,6 +58,12 @@ ruleTester.run("enforce-i18n-keys", rule, {
         },
         {
             code: "<div itemName=\"something\" />"
+        },
+        {
+            code: `
+            <MyComponent myName={DefinedObject} />
+            const DefinedObject = { my: "object" }
+            `
         }
     ],
 
@@ -108,6 +114,15 @@ ruleTester.run("enforce-i18n-keys", rule, {
             errors: [{
                 message: "Translated text required for `label`" +
                 " prop in `window.Components.SubLevel.Another.SomeComponent`",
+            }]
+        },
+        {
+            code: `
+            <MyComponent myName={DefinedString} />
+            const DefinedString = "my string"
+            `,
+            errors: [{
+                message: "Translated text required for `myName` prop in `MyComponent`",
             }]
         }
     ]

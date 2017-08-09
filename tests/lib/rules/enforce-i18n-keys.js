@@ -69,13 +69,15 @@ ruleTester.run("enforce-i18n-keys", rule, {
             }]
         },
         {
-            code: "<Component someLabel=\"my text\" anotherName=\"allowed\" demoText=\"something\" />",
+            code: "<Component someLabel=\"my text\" anotherName=\"allowed\" demoText=\"something\" subTitle=\"beep boop\" />",
             errors: [{
                 message: "Translated text required for `someLabel` prop in `Component`",
             }, {
                 message: "Translated text required for `anotherName` prop in `Component`",
             }, {
                 message: "Translated text required for `demoText` prop in `Component`",
+            }, {
+                message: "Translated text required for `subTitle` prop in `Component`",
             }]
         },
         {

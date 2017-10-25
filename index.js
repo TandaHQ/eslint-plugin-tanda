@@ -2,7 +2,7 @@ module.exports = {
   rules: {
     'enforce-i18n-keys': require('./lib/rules/enforce-i18n-keys'),
     'no-disallowed-props': require('./lib/rules/no-disallowed-props'),
-    'no-equals': require('./lib/rules/no-equals'),
+    'no-equals': require('./lib/rules/no-equal'),
   },
   configs: {
     recommended: {

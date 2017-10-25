@@ -10,7 +10,7 @@
     "test": "node tests"
   },
   "name": "eslint-plugin-tanda",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A small collection of custom ESLint plugins",
   "main": "index.js",
   "author": "David Buchan-Swanson <david.buchanswanson+npm@gmail.com>",

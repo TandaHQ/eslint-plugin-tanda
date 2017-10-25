@@ -1,5 +1,5 @@
 /**
- * @fileoverview Disable the use of `equals`, specifically meant for QUnit tests
+ * @fileoverview Disable the use of `equal`, specifically meant for QUnit tests
  * @author David
  */
 "use strict";
@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var rule = require("../../../lib/rules/no-equals"),
+var rule = require("../../../lib/rules/no-equal"),
 
     RuleTester = require("eslint").RuleTester;
 
@@ -18,22 +18,22 @@ var rule = require("../../../lib/rules/no-equals"),
 //------------------------------------------------------------------------------
 
 var ruleTester = new RuleTester();
-ruleTester.run("no-equals", rule, {
+ruleTester.run("no-equal", rule, {
 
     valid: [
       {
-        code: "strictEquals(1, 1)",
+        code: "strictEqual(1, 1)",
       },
       {
-        code: "deepEquals([], ['probs not'])"
+        code: "deepEqual([], ['probs not'])"
       },
     ],
 
     invalid: [
         {
-            code: "equals(1, 1)",
+            code: "equal(1, 1)",
             errors: [{
-                message: "`equals()` is not allowed. Maybe you want `strictEquals()` or `deepEquals()`.",
+                message: "`equal()` is not allowed. Maybe you want `strictEqual()` or `deepEqual()`.",
             }]
         }
     ]

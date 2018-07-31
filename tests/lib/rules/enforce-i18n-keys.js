@@ -42,6 +42,10 @@ ruleTester.run('enforce-i18n-keys', rule, {
       filename: 'someExempt.jsx',
     },
     {
+      code: '<Component someLabel="my text" />',
+      options: [{ ignoredProps: ['someLabel'] }],
+    },
+    {
       code: '<Component {...rest} />',
     },
     {
@@ -49,6 +53,14 @@ ruleTester.run('enforce-i18n-keys', rule, {
             const x = t('some.translation.key');
             <Component name={x} />
             `,
+    },
+    {
+      code: 'const x = this.props.test; <Component name={x} />',
+    },
+    {
+      code: `
+            <Component name={this.props.test} />
+      `,
     },
     {
       code: '<Component className="something" />',

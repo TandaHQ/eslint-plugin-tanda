@@ -26,6 +26,9 @@ ruleTester.run('formattedtime-requires-timezone', rule, {
     {
       code: '<FormattedTime otherProp={true} timezone="my text" />',
     },
+    {
+      code: '<FormattedTime otherProp={true} timeZone="my text" />',
+    },
   ],
 
   invalid: [

@@ -29,13 +29,22 @@ ruleTester.run('formattedtime-requires-timezone', rule, {
     {
       code: '<FormattedTime otherProp={true} timeZone="my text" />',
     },
+    {
+      code: '<FormattedDate otherProp={true} timeZone="my text" />',
+    },
   ],
 
   invalid: [
     {
       code: '<FormattedTime foo="bar" />',
       errors: [{
-        message: 'You must provide a `timezone` to the `FormattedTime` component',
+        message: 'You must provide a timeZone to FormattedTime',
+      }],
+    },
+    {
+      code: '<FormattedDate foo="bar" />',
+      errors: [{
+        message: 'You must provide a timeZone to FormattedDate',
       }],
     },
   ],

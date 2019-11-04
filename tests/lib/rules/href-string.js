@@ -15,7 +15,7 @@ const parserOptions = {
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({ parserOptions });
-ruleTester.run('formattedtime-requires-timezone', rule, {
+ruleTester.run('href-string', rule, {
   valid: [
     {
       code: '<Foo href={Routes.bar_path()} />',
@@ -25,6 +25,12 @@ ruleTester.run('formattedtime-requires-timezone', rule, {
     },
     {
       code: '<Foo anyOtherPropIsIgnored={"cool"} />',
+    },
+    {
+      code: '<Foo href={"https://www.google.com"} />', /* external links are fine */
+    },
+    {
+      code: '<Foo href="#" />', /* weird but fine */
     },
   ],
 
